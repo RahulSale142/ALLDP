@@ -1,0 +1,139 @@
+TemplateMethodDP
+================
+
+Task1==> x();
+	 y();
+	 z();
+	 a();
+
+Here we should remember multiple method names and there sequences of invocation..
+
+	 TemplateMethod
+	 ==============
+
+	 t1(){
+	 x();
+	 y();
+	 z();
+	 a();
+	 }
+
+	 Task1  ====> t1()
+
+	 Template Method is a super class method defining algorithm by calling multiple methods in a 
+	 sequence to complete the task in that algorith keeps common methods with defination and 
+	 keeps some method as abstract methods so that sub classes can define..
+
+
+	 Fresher recruitment drive 
+
+	 a) java fresher
+	 b) .net fresher
+	 c) php fresher
+
+Fresher Recruitment process
+===========================
+ Conduct aptitude Test
+ Conduct GD
+ Conduct Techinical Interview
+ Conduct System test
+ Conduct HR
+
+ super class
+ ===========
+ pubic abstract class HiringFrsher{
+ public boolean conductApti(){
+ return true/false;
+ }
+
+ public boolean conductGD(){
+	return true/false;
+ }
+
+ public abstract boolean conductTechnicalTest();
+ public abstract boolean conductSystemTest();
+
+ public boolean conductHR(){
+	return true/false;
+ }
+ }
+
+ Template mehthod design pattern
+
+ public boolean FresherRecruitmentDrive(){
+	if(conductAptiTest()){
+		if(conductGD()){
+			if(conductTechnical()){
+
+				if(conductSystemTest()){
+
+					if(conductHR()){
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+ }
+
+ public class HiringJavaFresher extends HiringFresher{
+	public boolean conductTechnicalInterview(){
+		return true/false;
+	}
+
+	public boolean conductSystemTest(){
+		return true/false;
+	}
+ }
+
+
+public class HiringDotNetFreher extends HiringFresher{
+public boolean conductTechnicalInterview(){
+		return true/false;
+	}
+
+	public boolean conductSystemTest(){
+		return true/false;
+	}
+}
+
+
+public class HiringPHPFreher extends HiringFresher{
+public boolean conductTechnicalInterview(){
+		return true/false;
+	}
+
+	public boolean conductSystemTest(){
+		return true/false;
+	}
+}
+
+public class FresherHiringFactory{
+	public static HiringFresher getInstance(String jobDomain){
+		HiringFresger fresher = null;
+		if(jobDomain.equalsIgnoreCase("java")){
+			fresher = new HiringJavaFresher();
+		}
+		else if(jobDomain.equalsIgnoreCase("php")){
+		fresher = new HiringPHPFresher();
+		}
+		else if(jobDomain.equalsIgnoreCase("dotnet")){
+		fresher = new HiringDotNetFresher();
+		}
+		else
+		throw new IllegalArgumentException("Illegal domain");
+	}
+}
+
+public class Company1{
+	p s v m(String[] args){
+	HiringFresher fresher = null;
+	fresher = HiringFresherFactory.getInstance("java");
+	fresher.fresherRecruitmentProcess();
+	}
+}
+
+Predefine metods acting as template method 
+All non abstract methods of java.io.InputStream
