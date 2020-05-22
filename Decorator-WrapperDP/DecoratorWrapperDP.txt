@@ -1,0 +1,163 @@
+Decorator/Wrapper Design pattern
+================================
+Using inheritance for extension is always complex process. that will make us to write more and more classes
+ while adding new functinality every time.
+
+ public interface IceCream{
+	public void prepare();
+ }
+
+ public class VanilaIceCream implements IceCream{
+	pulic void prepare(){
+		sop("preparing vanila ice cream");
+	}
+ }
+
+ 
+ public class ButterScotchIceCream implements IceCream{
+	pulic void prepare(){
+		sop("preparing butter scotch ice cream");
+	}
+ }
+
+public class DryFruitVanilaIceCream extends VanilaIceCream{
+	public void prepare(){
+	super.prepare();
+	addDryFruits();
+	}
+
+	private addDryFruits(){
+		sop("Adding DryFruit");
+	}
+}
+
+public class HoneyVanilaIceCream extends VanilaIceCream{
+	public void prepare(){
+	super.prepare();
+	addHoney();
+	}
+
+	private addHoney(){
+		sop("Adding Honey");
+	}
+}
+
+
+public class HoneyButterScotchIceCream extends ButterScotchIceCream{
+	public void prepare(){
+	super.prepare();
+	addHoney();
+	}
+
+	private addHoney(){
+		sop("Adding Honey");
+	}
+}
+2 --> basic flavours |	in all angle we need to develope 140 plus classes using inheritance concept
+4 --> topings	     |	supporting all permutation and combination..
+
+
+To solve above problem  use decorator or Wrapper Design pattern which says use composition support to add
+additional functinality to the object. So with less no of classes we can go for all combination ..
+
+4 important component of Decorator / Wrapper DP
+===============================================
+a) Component interface (IceCream (I))
+b) Concrete Component Classes (Vanila IceCream, ButterSCotchIceCream)
+c) Decorator (ABstract class having component interface ref variable and also implements component interface)
+d) ConcreteDecorator (Extends From Decorator adding functinality like honey decorator chocolate decoratotr,
+			DryFruit Decorator, Sambar Decorator)
+
+
+IceCream.java (Component interface)
+===================================
+public interface IceCream{
+public void prepare();
+}
+
+VanilaIcecream.java (Concrete component class)
+======================
+public class vanilaIceCream implements IceCream{
+public void prepare(){
+sop("preparing vanila ice cream");
+}
+}
+
+
+ButterScotchIcecream.java (Concrete component class)
+======================
+public class butterScotchIceCream implements IceCream{
+public void prepare(){
+sop("preparing butterScotch ice cream");
+}
+}
+
+IceDecorator.java (Decorator)
+
+public abstract class IceCreamDecorator implements IceCream{
+	private IceCream iceCream;
+
+	public IceCreamDecorator(IceCream iceCream){
+	this.iceCream = iceCream;
+	}
+
+	public void prepare(){
+	iceCream.prepare();
+	}
+}
+
+HoneyIceCreamDecorator.java (ConcreateDecorator)
+===============================================
+public HoneyIceCreamDecorator extends IceDecorator{
+	public HoneyIceCreamDecorator(IceCream iceCream){
+	super(iceCream);
+	}
+
+	public void preapare(){
+	super.prepare();
+	addHoney();
+	}
+
+	private void addHoney(){
+	sop("adding honey");
+	}
+}
+
+
+DryFruitIceCreamDecorator.java (ConcreateDecorator)
+===============================================
+public DryFruitIceCreamDecorator extends IceDecorator{
+	public DryFruitIceCreamDecorator(IceCream iceCream){
+	super(iceCream);
+	}
+
+	public void preapare(){
+	super.prepare();
+	addDryFrit();
+	}
+
+	private void addDryFruit(){
+	sop("adding DryFruit");
+	}
+}
+
+ClientApp
+=========
+
+IceCream cream1 = null;
+cream1 = new DryFruiticeCreamDecorator(new honeyDecorator(new VanilaIceCram()));
+
+iceCream cream2 = new VanilaIceCream();
+
+iceCream3 = new DryFruitDecorator(new VanilaiceCream());
+
+
+BufferReader reader = new BufferReader(new InputStreamReader(System.in));
+DataInputStram dis = new DataInputStream(new FileInputStream(abc.txt));
+
+BufferReader, BufferWriter,	|	Concreate Decorators
+Byte[] reader, Byte[] writer	|
+
+Single line statement
+=====================
+
